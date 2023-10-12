@@ -3,6 +3,7 @@
 require 'active_support/core_ext/hash/deep_merge'
 require 'rspec/core/formatters/base_text_formatter'
 require 'swagger_helper'
+require 'psych'
 
 module Rswag
   module Specs
@@ -102,7 +103,10 @@ module Rswag
       def pretty_generate(doc)
         if @config.swagger_format == :yaml
           clean_doc = yaml_prepare(doc)
-          YAML.dump(clean_doc)
+          # Using safe_dump is required for safe_load to be symmetrical.
+          # @see https://github.com/ruby/psych/pull/495
+          byebug
+          YAML.safe_dump(clean_doc)
         else # config errors are thrown in 'def swagger_format', no throw needed here
           JSON.pretty_generate(doc)
         end

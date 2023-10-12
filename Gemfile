@@ -25,6 +25,8 @@ end
 gem 'rswag-api', path: './rswag-api'
 gem 'rswag-ui', path: './rswag-ui'
 
+gem 'psych'
+
 group :development, :test do
   gem 'rswag-specs', path: './rswag-specs'
 end

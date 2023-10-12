@@ -57,7 +57,7 @@ module Rswag
 
       def unload_swagger(filename, swagger)
         if /\.ya?ml$/ === filename
-          YAML.dump(swagger)
+          YAML.safe_dump(swagger)
         else
           JSON.dump(swagger)
         end
